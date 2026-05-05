@@ -215,7 +215,15 @@ if __name__ == "__main__":
         })
 
         print(f"  Baseline objective : {baseline_obj:.2f} | DE best : {best_overall.fitness.values[0]:.2f}")
-
+    best_run = min(run_histories, key=lambda x: x["final_best"])
+    print("\n" + "="*50)
+    print(f"THE BEST SOLUTION FOUND ACROSS ALL {NUM_RUN} RUNS ")
+    print(f"Run Index: {best_run['run_index']}")
+    print(f"Best Objective: {best_run['final_best']:.4f}")
+    print(f"Total Wait: {best_run['final_wait']:.2f}")
+    print(f"Avg Queue: {best_run['final_avg_queue']:.4f}")
+    print(f"Best Timings: {best_run['best_solution']}")
+    print("="*50)
     shared_plot_individual_runs(run_histories, OUTPUT_DIR, NUM_GENERATIONS, "DE2")
     p1, p2, p3 = shared_plot_results(run_histories, OUTPUT_DIR, NUM_GENERATIONS, "DE2")
     shared_plot_per_run_avg(run_histories, OUTPUT_DIR, NUM_GENERATIONS, "DE2")
